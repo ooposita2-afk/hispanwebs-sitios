@@ -357,23 +357,23 @@ footer.site a{color:inherit}
 <section id="donde">
   <div class="wrap">
     <p class="eyebrow">Horario y dónde estamos</p>
-    <h2 style="margin-top:10px">Abierto todos los días al mediodía</h2>
+    <h2 style="margin-top:10px">Cuándo venir y cómo llegar</h2>
     <div class="info">
       <table class="hours" aria-label="Horario">
         
-        <tr class="today"><td>Lunes</td><td>Cerrado</td></tr>
+        <tr data-dia="0"><td>Lunes</td><td>Cerrado</td></tr>
         
-        <tr class=""><td>Martes</td><td>12:30–16:30 · 20:00–24:00</td></tr>
+        <tr data-dia="1"><td>Martes</td><td>12:30–16:30 · 20:00–24:00</td></tr>
         
-        <tr class=""><td>Miércoles</td><td>12:30–24:00</td></tr>
+        <tr data-dia="2"><td>Miércoles</td><td>12:30–24:00</td></tr>
         
-        <tr class=""><td>Jueves</td><td>12:30–16:30 · 20:00–24:00</td></tr>
+        <tr data-dia="3"><td>Jueves</td><td>12:30–16:30 · 20:00–24:00</td></tr>
         
-        <tr class=""><td>Viernes</td><td>12:30–16:30 · 20:00–24:00</td></tr>
+        <tr data-dia="4"><td>Viernes</td><td>12:30–16:30 · 20:00–24:00</td></tr>
         
-        <tr class=""><td>Sábado</td><td>12:30–16:30 · 20:00–24:00</td></tr>
+        <tr data-dia="5"><td>Sábado</td><td>12:30–16:30 · 20:00–24:00</td></tr>
         
-        <tr class=""><td>Domingo</td><td>12:00–16:30</td></tr>
+        <tr data-dia="6"><td>Domingo</td><td>12:00–16:30</td></tr>
         
       </table>
       <div class="addr">
@@ -425,6 +425,7 @@ footer.site a{color:inherit}
 </footer>
 
 <script>
+try{ var wd=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Madrid',weekday:'short'}).format(new Date()); var fila=document.querySelector('.hours tr[data-dia="'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].indexOf(wd)+'"]'); if(fila) fila.classList.add('today'); }catch(e){}
 document.querySelectorAll('.gallery figure').forEach(function(f){
   function t(){ var was=f.classList.contains('on'); document.querySelectorAll('.gallery figure.on').forEach(function(o){o.classList.remove('on')}); if(!was) f.classList.add('on'); }
   f.addEventListener('click',t);
