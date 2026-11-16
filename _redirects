@@ -1,0 +1,4 @@
+/la-despensa-de-triana/*  /despensa-triana/:splat  301
+/la-despensa-de-triana  /despensa-triana/  301
+/casa-sito-romero/*  /sito-romero/:splat  301
+/casa-sito-romero  /sito-romero/  301
