@@ -166,9 +166,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -176,7 +179,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -294,15 +297,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RQgqgIRDsBsS985bkgxR3aTSx4LxtcXrdUWbpmdDmfeHtWjjGGaEDWGwYWMI_HIxHn-15ER01XJOsbSlmFhm87LNuobpfFE3kHSGlGc2ZPq2dClgmBbHIpYqfLIRbqa630udLGNnf2GUB1=w1400-k-no" alt="Empanado de la casa con ensalada" loading="lazy"><figcaption>Empanado de la casa con ensalada</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RQgqgIRDsBsS985bkgxR3aTSx4LxtcXrdUWbpmdDmfeHtWjjGGaEDWGwYWMI_HIxHn-15ER01XJOsbSlmFhm87LNuobpfFE3kHSGlGc2ZPq2dClgmBbHIpYqfLIRbqa630udLGNnf2GUB1=w1400-k-no" alt="Empanado de la casa con ensalada" loading="lazy"><figcaption>Empanado de la casa con ensalada</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9REp6VbZbUMXZtzUhvpKz8bwWUovW5E-uQgEdS9PIGOn_LD-CPTX3X2AhTV2DJmiplDnj_1I4qE9kqSCRJgwOUrDs2XElxpRTAYF8YWpUqKMdkmq48VGAnNfMN4g5S5bbJXuCRa--NhkutB=w1400-k-no" alt="Flamenquín con patatas" loading="lazy"><figcaption>Flamenquín con patatas</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Seoy3VGXMxBQ7OtmZcn8-JvvDzTuB0YRM-JqvQCaOoDwazTPLN1bW3weZG3QkupnbluHxLNb-Yls-18s9TQeV-ViV7FCF2eIJreRCkHzhsTCRW_ti44o8t0-d73guJUcB01AU=w1400-k-no" alt="Huevos rotos con jamón" loading="lazy"><figcaption>Huevos rotos con jamón</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Snh1Tbuj4pLHaZ9T4E20EYvlwyYWmXpxhcNPrlOzt-vBxEum6btl3mR6bnhVmnXkBz7Il4hMuzmsM4CXIFKMBGwCaEfhuKvTDeTaAV9KOl962CHZvCXtoz-DO8N_4ZJfQyA9PW=w1400-k-no" alt="Salmorejo" loading="lazy"><figcaption>Salmorejo</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QiLfC6a4bmVFHITlXrrZ89E5mXckfHp3FoX_sUUGxLaNZi26t5hzQKGm52g6pmqL5H7ok8Mpg28xZ2kMNKSSLsoJDx3rgiIHONP8UFTTpvy2YzcOv9nmqXy6w4StMZ0OX3_-c1EC6kknyF=w1400-k-no" alt="Empanado dorado con guarnición" loading="lazy"><figcaption>Empanado dorado con guarnición</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Snh1Tbuj4pLHaZ9T4E20EYvlwyYWmXpxhcNPrlOzt-vBxEum6btl3mR6bnhVmnXkBz7Il4hMuzmsM4CXIFKMBGwCaEfhuKvTDeTaAV9KOl962CHZvCXtoz-DO8N_4ZJfQyA9PW=w1400-k-no" alt="Salmorejo" loading="lazy"><figcaption>Salmorejo</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QiLfC6a4bmVFHITlXrrZ89E5mXckfHp3FoX_sUUGxLaNZi26t5hzQKGm52g6pmqL5H7ok8Mpg28xZ2kMNKSSLsoJDx3rgiIHONP8UFTTpvy2YzcOv9nmqXy6w4StMZ0OX3_-c1EC6kknyF=w1400-k-no" alt="Empanado dorado con guarnición" loading="lazy"><figcaption>Empanado dorado con guarnición</figcaption></figure>
       
     </div>
   </div>
@@ -342,6 +360,7 @@ footer.site a{color:inherit}
     <p class="eyebrow">Horario y dónde estamos</p>
     <h2 style="margin-top:10px">Cuándo venir y cómo llegar</h2>
     <div class="info">
+      
       <table class="hours" aria-label="Horario">
         
         <tr data-dia="0"><td>Lunes</td><td>Cerrado</td></tr>
@@ -359,6 +378,7 @@ footer.site a{color:inherit}
         <tr data-dia="6"><td>Domingo</td><td>13:00–17:00</td></tr>
         
       </table>
+      
       <div class="addr">
         <p class="big">C/ José Díaz, 8<br>41009 Sevilla</p>
         <p class="phone">646 31 53 16</p>

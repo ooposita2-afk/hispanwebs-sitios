@@ -117,9 +117,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -127,7 +130,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -247,15 +250,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdmSBLxuXmvlA42mNFfZNFT47RF8N66JAoqcyp2DQcZe_XcYKy5WfuAHYZSZZJNvDQGXOteOm087Vi3DX7HT1BqTjlAWxqanuS07QueNJDLjFa1GlFI90vBEhp5o3DLFJlDhsaIH_V3XFZa=w1400-k-no" alt="Carne glaseada" loading="lazy"><figcaption>Carne glaseada</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdmSBLxuXmvlA42mNFfZNFT47RF8N66JAoqcyp2DQcZe_XcYKy5WfuAHYZSZZJNvDQGXOteOm087Vi3DX7HT1BqTjlAWxqanuS07QueNJDLjFa1GlFI90vBEhp5o3DLFJlDhsaIH_V3XFZa=w1400-k-no" alt="Carne glaseada" loading="lazy"><figcaption>Carne glaseada</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLchgj_6cBOsCqaRgz6eK6_sqWvtbOf4FIdi4eUI2T__gj3THdip-C_SmWo7AbdK0of16Fu86t745ZDB0tQZKJpGNeBlfMIws3n5Zw5ZnsBPvoUm-USLjqlMjd_mlBM3HIocB7UL48qD7DE=w1400-k-no" alt="Tomate aliñado" loading="lazy"><figcaption>Tomate aliñado</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLcP9CIFHdTM2EPK1w3TceYtqbZrzjBNkSqz_3N7lDFdmuAx1NcrtorBdVmuNvpgghwp9otQkgudeouu8NM9tyrM1ky4m68klkQeOFFajf8ksYfHNHH5iAhzuPiWp8OMeDsEuZ2rnDNS4Coz=w1400-k-no" alt="Anchoas" loading="lazy"><figcaption>Anchoas</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdBiM4yH-w5HbISPq75TDdQ2s5M6h7Ac90ghoSedjhpl-1SQhsyt4wxWGJ35yAfjGIp_6Jc-UjHFaFH31rTy1eAN3DJzXZsvv2SjXz2ypaLcdoJ-WExT6vH9DEcM8fS-eZjcmutSFQV0ZcI=w1400-k-no" alt="Tapa de autor" loading="lazy"><figcaption>Tapa de autor</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdgUB-LG7iOGgrUYhjmlsNHvZm7L5o5bAjdch28io5LmWlanfw0jhn6pLDmRaz46XJ07MB-AUlUPkELB18yofIsS04YMXY2b_mJgdCjt0oXC96IcCXJQlC6KHw-rz13knEdja1gmoc3pOMk=w1400-k-no" alt="Barra y estantería de vinos" loading="lazy"><figcaption>Barra y estantería de vinos</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdBiM4yH-w5HbISPq75TDdQ2s5M6h7Ac90ghoSedjhpl-1SQhsyt4wxWGJ35yAfjGIp_6Jc-UjHFaFH31rTy1eAN3DJzXZsvv2SjXz2ypaLcdoJ-WExT6vH9DEcM8fS-eZjcmutSFQV0ZcI=w1400-k-no" alt="Tapa de autor" loading="lazy"><figcaption>Tapa de autor</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdgUB-LG7iOGgrUYhjmlsNHvZm7L5o5bAjdch28io5LmWlanfw0jhn6pLDmRaz46XJ07MB-AUlUPkELB18yofIsS04YMXY2b_mJgdCjt0oXC96IcCXJQlC6KHw-rz13knEdja1gmoc3pOMk=w1400-k-no" alt="Barra y estantería de vinos" loading="lazy"><figcaption>Barra y estantería de vinos</figcaption></figure>
       
     </div>
   </div>

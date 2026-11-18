@@ -160,9 +160,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -170,7 +173,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -290,15 +293,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdflDdacWdlD8uSkfasdRrI40whBzWDLdqC9A5Nxpk78R77ImTbI2G171lpP9UgiKIPyV4Ze2lC_oQmQj69rQ3u44w1p799UKnjS9pb3SVi-ed1VLJKlSzXRTNDMtIu-G1rWNGqVA=w1400-k-no" alt="Papas bravas" loading="lazy"><figcaption>Papas bravas</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdflDdacWdlD8uSkfasdRrI40whBzWDLdqC9A5Nxpk78R77ImTbI2G171lpP9UgiKIPyV4Ze2lC_oQmQj69rQ3u44w1p799UKnjS9pb3SVi-ed1VLJKlSzXRTNDMtIu-G1rWNGqVA=w1400-k-no" alt="Papas bravas" loading="lazy"><figcaption>Papas bravas</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdUn6qmBakZaAtjAMuFMX_xesnpsKO14mWro2d4QY9mpkZs2x70fNB5prXmu-QEWt3p0B3dp_oMNTb8RPbaH82hZnhTnWBY69wnJBRUtO7A92rrpboim1zFJCrdWVN0KCLftZcf=w1400-k-no" alt="Croquetas" loading="lazy"><figcaption>Croquetas</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLfGTrRFYcs_FcfWszsok-693zLS2ja3jeosrrPVXa28YIzdYUcs4_sZvUseWZbrlDx7hG9XSld5txq0h0JS_xgCm2Z2b_xqUqO8moSY5Rcs9lQ5vJFZG8emH9lUvlx_YW6V4SywKg=w1400-k-no" alt="Carne a la plancha con patatas" loading="lazy"><figcaption>Carne a la plancha con patatas</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdIWZ8LVtg_bVCSNSCvOnfUopexmOOLBF0kkGimaFllheC_qa_JvbnqS7mfKchc4iEobc5TCn2dWJ6IJz7dnmqgNAwK817NsPiy-15btn_hNfLiS4xS4-1r6S3I7qQfn7DbgSRvDw=w1400-k-no" alt="Wok de fideos" loading="lazy"><figcaption>Wok de fideos</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdHRB7YbI67QsIcki5TL2NS7YSulRIKIKhhPfLmhSldsBYy17F6XPGkSuMxEZFdFJAIKMXt2yPlODyZWmq35iDEh97e753GVgYHFzw3vhe2KsdhtA3yqv-uuuvJXKY9tEHWzpeS=w1400-k-no" alt="Tostada con salmón y aguacate" loading="lazy"><figcaption>Tostada con salmón y aguacate</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdIWZ8LVtg_bVCSNSCvOnfUopexmOOLBF0kkGimaFllheC_qa_JvbnqS7mfKchc4iEobc5TCn2dWJ6IJz7dnmqgNAwK817NsPiy-15btn_hNfLiS4xS4-1r6S3I7qQfn7DbgSRvDw=w1400-k-no" alt="Wok de fideos" loading="lazy"><figcaption>Wok de fideos</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdHRB7YbI67QsIcki5TL2NS7YSulRIKIKhhPfLmhSldsBYy17F6XPGkSuMxEZFdFJAIKMXt2yPlODyZWmq35iDEh97e753GVgYHFzw3vhe2KsdhtA3yqv-uuuvJXKY9tEHWzpeS=w1400-k-no" alt="Tostada con salmón y aguacate" loading="lazy"><figcaption>Tostada con salmón y aguacate</figcaption></figure>
       
     </div>
   </div>

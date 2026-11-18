@@ -177,9 +177,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -187,7 +190,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -307,13 +310,25 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Q8PEsiOBe0RKz3GfIjC8WRp_s9lP1tvLA7lhgFy00igMHTo-gbqETN4lluJWDu4yZ1eweATCzHO4fFJY4vnn-Ojc-3OGwKwTmgbQOnrKntPuBSozXlwSFjcuehvYZbv1ycyfdES1_vorvA=w1400-k-no" alt="Fritura variada" loading="lazy"><figcaption>Fritura variada</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Q8PEsiOBe0RKz3GfIjC8WRp_s9lP1tvLA7lhgFy00igMHTo-gbqETN4lluJWDu4yZ1eweATCzHO4fFJY4vnn-Ojc-3OGwKwTmgbQOnrKntPuBSozXlwSFjcuehvYZbv1ycyfdES1_vorvA=w1400-k-no" alt="Fritura variada" loading="lazy"><figcaption>Fritura variada</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Rgp2lGdCU8AHZEKFdBdjDqlL82f0MISwZvIGAu4MhZdLfDKxTteOpqJEB4xfRe-Zs4GViLrCAPVg4zVROyeAMG4Jz9SmiEvBkGwdw61RE8AJlVhqNfj524OVCa-x9jc48YZI8EpLn8yKU=w1400-k-no" alt="Gambas" loading="lazy"><figcaption>Gambas</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9ThgsKVdW6OhkPZqxPliHC5jBs1tLoWpoNPzOiU7CFc4xOllzCPo61WlMsPFjtyzDD7snOQXRzmo8hgpifhTBK2g8X1MG4YQKaG1cuQpZdSxoPE8E2y95wItjMkZV43gKFC3YD4=w1400-k-no" alt="Puntillitas fritas" loading="lazy"><figcaption>Puntillitas fritas</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SxkpN_OWNxpqG64R3GaI2M0mvxBstAOb65r0mQXgJVWByDGOL2sqqzQ99s9e6ed_KBqU-O-JdkzKs1jaMpE_nkzfKUwf3iZjKsTuiFgQhLSycvzVqHHT7GesTlistJJSim_EF3jmTesCk=w1400-k-no" alt="Pescado en adobo" loading="lazy"><figcaption>Pescado en adobo</figcaption></figure>
+      
+      
+      
+      <figure tabindex="0" class="g-full"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SxkpN_OWNxpqG64R3GaI2M0mvxBstAOb65r0mQXgJVWByDGOL2sqqzQ99s9e6ed_KBqU-O-JdkzKs1jaMpE_nkzfKUwf3iZjKsTuiFgQhLSycvzVqHHT7GesTlistJJSim_EF3jmTesCk=w1400-k-no" alt="Pescado en adobo" loading="lazy"><figcaption>Pescado en adobo</figcaption></figure>
       
     </div>
   </div>

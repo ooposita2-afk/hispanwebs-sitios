@@ -111,20 +111,20 @@
 </script>
 <style>
 /* Layout: una columna estrecha para leer (65ch), con bandas a sangre para portada y galería. */
+
+
+
 :root{
-  --bg:#FAF8F3; --bg-2:#F0ECE3; --ink:#19201C; --ink-2:#4A5450; --line:#DAD4C6;
-  --accent:#1E5A3E; --accent-ink:#FFFFFF; --accent-soft:#E2EEE6; --star:#C9972A;
+  --bg:#FAF8F3; --bg-2:#F0ECE3; --ink:#19201C; --ink-2:#4A5450; --line:#DAD4C6; --accent:#1E5A3E; --accent-ink:#FFFFFF; --accent-soft:#E2EEE6; --star:#C9972A;
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --gutter:max(16px,env(safe-area-inset-left,0px)); --gutter-r:max(16px,env(safe-area-inset-right,0px));
   --measure:66ch; --radius:14px;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#141917; --bg-2:#1C2320; --ink:#F1EFE8; --ink-2:#B9C0BA; --line:#2E3733;
-  --accent:#4FA87C; --accent-ink:#0E1A14; --accent-soft:#1D3328; --star:#E0B04A; color-scheme:dark }}
+  --bg:#141917; --bg-2:#1C2320; --ink:#F1EFE8; --ink-2:#B9C0BA; --line:#2E3733; --accent:#4FA87C; --accent-ink:#0E1A14; --accent-soft:#1D3328; --star:#E0B04A; color-scheme:dark }}
 :root[data-theme="dark"]{
-  --bg:#141917; --bg-2:#1C2320; --ink:#F1EFE8; --ink-2:#B9C0BA; --line:#2E3733;
-  --accent:#4FA87C; --accent-ink:#0E1A14; --accent-soft:#1D3328; --star:#E0B04A; color-scheme:dark }
+  --bg:#141917; --bg-2:#1C2320; --ink:#F1EFE8; --ink-2:#B9C0BA; --line:#2E3733; --accent:#4FA87C; --accent-ink:#0E1A14; --accent-soft:#1D3328; --star:#E0B04A; color-scheme:dark }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
@@ -179,9 +179,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -189,7 +192,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -309,15 +312,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9S-p-9S6KwUahHKAedgwJFnXHz2slW8Sp2l2i4lfkfUPf1W7dseKtZvlP5ApjgVwZPTwGuDWxgNqWXVcttvIutlxmR7ag7ZqabfewbxMVvI0NR31BPGRpNmnxd7nTNSN80R2B_h=w1400-k-no" alt="Carne a la piedra con pimientos" loading="lazy"><figcaption>Carne a la piedra con pimientos</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9S-p-9S6KwUahHKAedgwJFnXHz2slW8Sp2l2i4lfkfUPf1W7dseKtZvlP5ApjgVwZPTwGuDWxgNqWXVcttvIutlxmR7ag7ZqabfewbxMVvI0NR31BPGRpNmnxd7nTNSN80R2B_h=w1400-k-no" alt="Carne a la piedra con pimientos" loading="lazy"><figcaption>Carne a la piedra con pimientos</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QEyx1Up8WhHBYN9uxyAk2CZchTu1Px6EdWRq6l9DNRrAtQcN7IkP7O18zAb4EHWuW1F5fq7KsulpCkg-_yy0qnWXjwZSRTBal065UVX_TO08gY-mVJhLOlP9e0HYQpCCQ5G7AjWg=w1400-k-no" alt="Berenjenas fritas con miel" loading="lazy"><figcaption>Berenjenas fritas con miel</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SKRJt20ODfWeAvV0UyJO_QabhWK4XchX4Qj2ogtfK1vBjyjGq1hkmKtqyLJtORtFPjxlXKfdCX5PLt2Aiy3_sCSneTOBiupbE10DQz03-cNxhIG7KJpk8LKBIZ0Tff0vD7--J842aonvnT=w1400-k-no" alt="Carrillada" loading="lazy"><figcaption>Carrillada</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Sh2YKWSotIcw2OAtRpJTuqVNfkM07gpVxtcBCMprIhD7GdGhotVmyLDoRKgrO7etMmIh-5gFhq8meb3iA4ftA9mrXExPn6OJmODsLtNte2lo7g0ZOq5aQvfwdcBsmd066R-GoJe78jMZZW=w1400-k-no" alt="Croquetas caseras" loading="lazy"><figcaption>Croquetas caseras</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TR97J9ELowMFULsXtQTeV6YsfMwIGwBXm6UQkUmsYcLx-Psy39hSr9WqNdrDJbyJZYU0cHLDqapVJ9F1MpDT5atg4RK0KILX8sZEr5yOwj1rYYFL-bTZfLuYze4lsz4RbqQPdAV5QRI-c=w1400-k-no" alt="Jamón" loading="lazy"><figcaption>Jamón</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Sb69ccK1ffy7g4x4zvrp9KZHinU5RffCHLdJl8Bn8DknKsilt5NQx2ajoj7zci0ImrRzRfaWEZGU0pcMBStDuWsbsaWecP5vW1hKeCF9c8Y_hr1L1rayDa_nY9R8CFmc7ESYS0iSEwawE=w1400-k-no" alt="Salón del restaurante" loading="lazy"><figcaption>Salón del restaurante</figcaption></figure>
       
@@ -359,6 +377,7 @@ footer.site a{color:inherit}
     <p class="eyebrow">Horario y dónde estamos</p>
     <h2 style="margin-top:10px">Cuándo venir y cómo llegar</h2>
     <div class="info">
+      
       <table class="hours" aria-label="Horario">
         
         <tr data-dia="0"><td>Lunes</td><td>Cerrado</td></tr>
@@ -376,6 +395,7 @@ footer.site a{color:inherit}
         <tr data-dia="6"><td>Domingo</td><td>12:00–16:30</td></tr>
         
       </table>
+      
       <div class="addr">
         <p class="big">C. Muñoz León, 11<br>41009 Sevilla</p>
         <p class="phone">608 58 53 24</p>

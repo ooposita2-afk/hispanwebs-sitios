@@ -154,9 +154,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -164,7 +167,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -284,15 +287,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SfmQUmC_GH0N_XV_1OYpCg4pO_5jvG9oP5Py3c6SjNB0GDDV7Fq7T3vIHo_tcyWnp6wjjOdjOf9AbxSBv-xQigLkC7jOkfCl1IPro8vv_W6mbjgRjY4ibhH9j2iNsrraQBnRCLhg=w1400-k-no" alt="Pescaíto frito" loading="lazy"><figcaption>Pescaíto frito</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SfmQUmC_GH0N_XV_1OYpCg4pO_5jvG9oP5Py3c6SjNB0GDDV7Fq7T3vIHo_tcyWnp6wjjOdjOf9AbxSBv-xQigLkC7jOkfCl1IPro8vv_W6mbjgRjY4ibhH9j2iNsrraQBnRCLhg=w1400-k-no" alt="Pescaíto frito" loading="lazy"><figcaption>Pescaíto frito</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SIQnGizPtcDNl8YMUwyUfV8wog6oedbWQxvhX_AR3urFbXm24my2_VKOUvc4wuKZoRGj_I_dmmq8D-l_o1FM5rYxxtllqCi4NNxHXqy7qnyacnDSQ5V56KYYqIEgXIzbgpk-V0=w1400-k-no" alt="Chocos fritos" loading="lazy"><figcaption>Chocos fritos</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TanWdT_DzPoMzSX5sh8EUUvGDQj6Qw3BwbLG0SNipvqiqrJISsMEdIiyQ-KcQM3wBjaXT-k9x8teBHkIrncXNm8mW4aPraEbsGVVCCWhgQ78IZc_SbRxdh1Khk5nhfDVDJW2I=w1400-k-no" alt="Guiso de carne en salsa" loading="lazy"><figcaption>Guiso de carne en salsa</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RA5z8AmuOhTyyE9wok2iPNwUTnSMTRk5y6FfXX-BIYMshs_izSpwSjjWl-KBfMyf_Wvznzo1mOo7N7SebdHG75j7jeudGvZOKHunZ8b6K2cIP77fJS4A7Y6G-dgrK5GqdPLnxT=w1400-k-no" alt="Tostadas de desayuno" loading="lazy"><figcaption>Tostadas de desayuno</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QCKrqdEFLyxqcC5_EOd8bElIP1iFHI0gdehrG6h5U6P_JCHBoS5feB64vhpAac6mOLxgBlt4_bzbrFmwK2E4xchpa4uKoquW9QtJdVHdpuLGnpupaGZ7GmcTLj54g0hOowNw=w1400-k-no" alt="Interior del bar" loading="lazy"><figcaption>Interior del bar</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RA5z8AmuOhTyyE9wok2iPNwUTnSMTRk5y6FfXX-BIYMshs_izSpwSjjWl-KBfMyf_Wvznzo1mOo7N7SebdHG75j7jeudGvZOKHunZ8b6K2cIP77fJS4A7Y6G-dgrK5GqdPLnxT=w1400-k-no" alt="Tostadas de desayuno" loading="lazy"><figcaption>Tostadas de desayuno</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QCKrqdEFLyxqcC5_EOd8bElIP1iFHI0gdehrG6h5U6P_JCHBoS5feB64vhpAac6mOLxgBlt4_bzbrFmwK2E4xchpa4uKoquW9QtJdVHdpuLGnpupaGZ7GmcTLj54g0hOowNw=w1400-k-no" alt="Interior del bar" loading="lazy"><figcaption>Interior del bar</figcaption></figure>
       
     </div>
   </div>

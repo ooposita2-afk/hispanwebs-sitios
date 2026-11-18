@@ -160,9 +160,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -170,7 +173,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -290,15 +293,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RKFA65hjvy3TV_C07T1GHHUlwyU8Tz-0UOgseMQiTHU4P4ii5icUqdst8OGaYpod6WstG42T3Xum4pBh-inxoHON0z2llNpGaC1ArxQ7gqRmGHF2DYqN11f-v_D5hrfpkMLavO2rLRzg68=w1400-k-no" alt="Tostada con jamón y salmorejo" loading="lazy"><figcaption>Tostada con jamón y salmorejo</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RKFA65hjvy3TV_C07T1GHHUlwyU8Tz-0UOgseMQiTHU4P4ii5icUqdst8OGaYpod6WstG42T3Xum4pBh-inxoHON0z2llNpGaC1ArxQ7gqRmGHF2DYqN11f-v_D5hrfpkMLavO2rLRzg68=w1400-k-no" alt="Tostada con jamón y salmorejo" loading="lazy"><figcaption>Tostada con jamón y salmorejo</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TPENlgUKv34N7m5XAp3N8FMVB3qXuEoZOz0VXRabk4AkYuZ85JCIzzxbtDe74PESa_fbLRv_3yCwcaJEHJ2dv4FDlhur3PnGC0uMTCeGIUDpOEtr267GkRk5IVqRk82-VCtNfd=w1400-k-no" alt="Salmorejo" loading="lazy"><figcaption>Salmorejo</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RUFEC26vYq730H7tkPURVM9qiUh4XJcjufv4Ky9hsIHY4_BRv6Q_axFc7yFv9TqkwLwquO6L1KkT0UkTysPSMeuCnwzmNnDKcr3KKoPp_aRxGMMyc2WF04KjiiPGlR9vh0l0A=w1400-k-no" alt="Plato gratinado de la casa" loading="lazy"><figcaption>Plato gratinado de la casa</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RWjEM1eo9CBqz--LzeYJ4_hbGutZu3CH1KS7__SMbLojzxP7nOFzs4tUiufbxC4K8dzMkvu_uk0T--J3lJ0_Jqd91XQr7Ji_wtQ71hhr6YXWis9eaEzSvcDIUc4dadYSKvGwk=w1400-k-no" alt="Barra de desayunos" loading="lazy"><figcaption>Barra de desayunos</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RBwbRQxHARDjwSuIPfXlW7X_uKF6TKzzfoq6BUGRYHJ7oyr7-BI27ash6COjG4qetZXH8prjQP2m4vFXSyB9sWPkl4t6TXnsCfafWRA4FOUEA-y3xAvbdfphypvfo1pOQaER9g0A=w1400-k-no" alt="Salón interior" loading="lazy"><figcaption>Salón interior</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RWjEM1eo9CBqz--LzeYJ4_hbGutZu3CH1KS7__SMbLojzxP7nOFzs4tUiufbxC4K8dzMkvu_uk0T--J3lJ0_Jqd91XQr7Ji_wtQ71hhr6YXWis9eaEzSvcDIUc4dadYSKvGwk=w1400-k-no" alt="Barra de desayunos" loading="lazy"><figcaption>Barra de desayunos</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RBwbRQxHARDjwSuIPfXlW7X_uKF6TKzzfoq6BUGRYHJ7oyr7-BI27ash6COjG4qetZXH8prjQP2m4vFXSyB9sWPkl4t6TXnsCfafWRA4FOUEA-y3xAvbdfphypvfo1pOQaER9g0A=w1400-k-no" alt="Salón interior" loading="lazy"><figcaption>Salón interior</figcaption></figure>
       
     </div>
   </div>

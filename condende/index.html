@@ -184,9 +184,12 @@ section + section{border-top:1px solid var(--line)}
 .reason p{color:var(--ink-2);font-size:16px}
 
 /* Galería */
-.gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr);margin-top:24px}
-.gallery figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--bg-2)}
-.gallery figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:4/3}
+/* Cuadrícula de 6 columnas: la última fila siempre se rellena (sin huecos) sea cual sea el nº de fotos */
+.gallery{display:grid;gap:8px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,17vw,220px);margin-top:24px}
+.gallery figure{margin:0;grid-column:span 2;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+.gallery figure.g-main{grid-column:span 4;grid-row:span 2}
+.gallery figure.g-half{grid-column:span 3}
+.gallery figure.g-full{grid-column:1/-1}
 .gallery figure{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:15px;line-height:1.3;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.15) 55%,transparent);opacity:0;transition:opacity .25s}
@@ -194,7 +197,7 @@ section + section{border-top:1px solid var(--line)}
 .gallery figure.on img{transform:scale(1.04)}
 @media (hover:hover){ .gallery figure:hover figcaption{opacity:1} .gallery figure:hover img{transform:scale(1.04)} }
 .gallery figure:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} }
+@media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto} .gallery figure,.gallery figure.g-half{grid-column:span 1;aspect-ratio:4/3} .gallery figure.g-main{grid-column:span 2;grid-row:auto;aspect-ratio:16/10} .gallery figure.g-full,.gallery figure:last-child:nth-child(even){grid-column:span 2;aspect-ratio:16/10} }
 
 /* Reseñas */
 .reviews{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -314,15 +317,30 @@ footer.site a{color:inherit}
     <h2 style="margin-top:10px">De la cocina a la mesa</h2>
     <div class="gallery">
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdFYwUSs6cv_zNCIerSZadRApb4w4crlW6x48xstRFcdOnVrNFgva7CsidMq82DRO7_1mB2HZ_7v9QU4Noi1V9uzqZ-paveBwpHZroDetDxvP6IGCNqRjrWSpWnLdFXPV6zW7VRXg=w1400-k-no" alt="Arepa con carne mechada" loading="lazy"><figcaption>Arepa con carne mechada</figcaption></figure>
+      
+      
+      
+      
+      
+      <figure tabindex="0" class="g-main"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdFYwUSs6cv_zNCIerSZadRApb4w4crlW6x48xstRFcdOnVrNFgva7CsidMq82DRO7_1mB2HZ_7v9QU4Noi1V9uzqZ-paveBwpHZroDetDxvP6IGCNqRjrWSpWnLdFXPV6zW7VRXg=w1400-k-no" alt="Arepa con carne mechada" loading="lazy"><figcaption>Arepa con carne mechada</figcaption></figure>
+      
+      
       
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdofyDpvKB_jB5JvAYJs2ulmFqw8ZYE2ttKMmgvUQOekMW3gpBfDdHyF-eAJVj8je0r2W8Jd09nTPldWNqE0rsXB6mzutRKiK0ppo0ij7H45UKY7kmAjXwR26BZc0lEAIAASKS8WJFkccXK=w1400-k-no" alt="Gyozas" loading="lazy"><figcaption>Gyozas</figcaption></figure>
       
+      
+      
       <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLd3ufLCqqcPXrCvrDX9LOPVAFHKPWJUNtq_SzaZ7Hl8RvWPd9XDdZ9kJHmENlSo_1THFkWnBFwE3GLr3wX6M8Y6uoin29scl9VARHkd36_iEBNnHuv35Mj-GPWemw-1-xhtWFj4sA=w1400-k-no" alt="Yuca brava" loading="lazy"><figcaption>Yuca brava</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLfKcuE3PDiX-CqYcocww2FGVMpvoBJEf6sPHq26pyXYKUQfLca3SPIunxv2g7M75wcBepj-lvDJPS4ejdaY33UD7VJAHuVTVQMA7vC0KJsUjJukY814_h2lgq7AgA2GWqyOG1W3=w1400-k-no" alt="Tostadas de la casa" loading="lazy"><figcaption>Tostadas de la casa</figcaption></figure>
       
-      <figure tabindex="0"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLezQiBZbduUn8R7sWzzhbXeOEM9ZsIiW6qJz9l1BUj73GmoNw-89snWVZFfV8u8lIHuo2z-RcbnbwQR6wj7DyKLoF8HHmzgzEC2wXl-C0WudMfxmvyJPy_NZXxwS3fH6msxfOXd=w1400-k-no" alt="Empanadas con salsa" loading="lazy"><figcaption>Empanadas con salsa</figcaption></figure>
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLfKcuE3PDiX-CqYcocww2FGVMpvoBJEf6sPHq26pyXYKUQfLca3SPIunxv2g7M75wcBepj-lvDJPS4ejdaY33UD7VJAHuVTVQMA7vC0KJsUjJukY814_h2lgq7AgA2GWqyOG1W3=w1400-k-no" alt="Tostadas de la casa" loading="lazy"><figcaption>Tostadas de la casa</figcaption></figure>
+      
+      
+      
+      
+      <figure tabindex="0" class="g-half"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLezQiBZbduUn8R7sWzzhbXeOEM9ZsIiW6qJz9l1BUj73GmoNw-89snWVZFfV8u8lIHuo2z-RcbnbwQR6wj7DyKLoF8HHmzgzEC2wXl-C0WudMfxmvyJPy_NZXxwS3fH6msxfOXd=w1400-k-no" alt="Empanadas con salsa" loading="lazy"><figcaption>Empanadas con salsa</figcaption></figure>
       
     </div>
   </div>
